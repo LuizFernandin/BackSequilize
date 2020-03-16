@@ -1,14 +1,14 @@
-const Usuario = require('../models/Usuario');
+const db = require("../models");
 
 module.exports = {
     async index(req, res) {
-        const usuarios = await Usuario.findAll();
+        const usuarios = await db.Usuario.findAll();
         return res.json(usuarios);
     },
 
     async store(req, res) {
         const { name, email } = req.body;
-        const usuario = await Usuario.create({ name, email });
+        const usuario = await db.Usuario.create({ name, email });
         return res.json(usuario);
     }
 };

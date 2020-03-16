@@ -1,9 +1,10 @@
 const { Op } = require('sequelize');
-const Usuario = require('../models/Usuario');
+
+const db = require("../models");
 
 module.exports = {
     async show(req, res) {
-        const usuario = await Usuario.findAll({
+        const usuario = await db.Usuario.findAll({
             attributes: ['name', 'email'],
             where: {
                 email: {
@@ -17,7 +18,7 @@ module.exports = {
                     required: false,
                     where: {
                         name: {
-                            [Op.like]: 'Nodeo%'
+                            [Op.like]: 'React%'
                         }
                     }
                 }

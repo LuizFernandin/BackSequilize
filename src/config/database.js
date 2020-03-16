@@ -1,13 +1,23 @@
+require("dotenv").config();
+
 module.exports = {
-    dialect: 'mysql',
-    host: 'localhost',
-    username: 'root',
-    password: '',
-    database: 'sqlnode',
-    define: {
-        timestamps: 'true',
-        underscored: 'true'
+    "development": {
+        username: process.env.MYSQL_NOME,
+        password: process.env.MYSQL_KEY,
+        database: process.env.MYSQL_DBNAME,
+        host: process.env.MYSQL_HOST,
+        dialect: 'mysql',
+        define: {
+            timestamps: 'true',
+            underscored: 'true',
+        }
+    },
+    "production": {
+        "use_env_variable": "JAWSDB_URL",
+        dialect: 'mysql',
+        define: {
+            timestamps: 'true',
+            underscored: 'true',
+        }
     }
 }
-
-// created_at, updated_at

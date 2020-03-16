@@ -1,10 +1,9 @@
-const Tech = require('../models/Tech');
-const Usuario = require('../models/Usuario');
+const db = require("../models");
 
 module.exports = {
     async index(req, res) {
         const { user_id } = req.params;
-        const usuario = await Usuario.findByPk(user_id, {
+        const usuario = await db.Usuario.findByPk(user_id, {
             include: { 
                 association : 'techs', attributes: [ 'name' ],
                 through: {
@@ -19,13 +18,13 @@ module.exports = {
         const { user_id } = req.params;
         const { name } = req.body;
 
-        const usuario = await Usuario.findByPk(user_id);
+        const usuario = await db.Usuario.findByPk(user_id);
 
         if(!usuario) {
             return res.status(400).json({ error: 'Usuario não encontrado!' })
         }
 
-        const [ tech ] = await Tech.findOrCreate({
+        const [ tech ] = await db.Tech.findOrCreate({
             where: { name }
         });
 
@@ -38,13 +37,13 @@ module.exports = {
         const { user_id } = req.params;
         const { name } = req.body;
 
-        const usuario = await Usuario.findByPk(user_id);
+        const usuario = await db.Usuario.findByPk(user_id);
 
         if(!usuario) {
             return res.status(400).json({ error: 'Usuario não encontrado!' })
         }
 
-        const tech = await Tech.findOne({
+        const tech = await db.Tech.findOne({
             where: { name }
         });
 

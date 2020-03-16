@@ -1,9 +1,10 @@
+const express = require('express');
+const routes = express.Router();
+
 const UsuarioController = require('./controllers/UsuarioController');
 const EnderecoController = require('./controllers/EnderecoController');
 const TechController = require('./controllers/TechController');
 const ReportController = require('./controllers/ReportController');
-const express = require('express');
-const routes = express.Router();
 
 routes.get('/usuario/lista', UsuarioController.index);
 routes.post('/usuario', UsuarioController.store);
